@@ -28,6 +28,32 @@
     }
 
   }],
+  "subPackages":[
+    {
+      "pages":"subpkg",
+      "pages" : [{
+        "path":"goods_detail/goods_detail",
+        "style":{}
+      }    ,{
+                    "path" : "goods_listgoods_list",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "goods_listgoods_list",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
+    }],
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "优购",
