@@ -70,7 +70,7 @@
       }
       res.message.forEach(floor=>{
         floor.product_list.forEach(prod =>{
-          prod.url = '/subpkg/goods_list?' + prod.navigator_url.split('?')[1]
+          prod.url = '/subpkg/goods_list/goods_list?' + prod.navigator_url.split('?')[1]
         })
       })
       this.floorList = res.message 
