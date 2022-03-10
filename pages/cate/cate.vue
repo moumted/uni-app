@@ -1,5 +1,7 @@
 <template>
   <view>
+ <!--   <my-search :bgcolor="'lightblue'"></my-search> -->
+    <my-search @click="gotoSearch"></my-search>
     <view class="scroll-view-container">
       <!-- 左侧 -->
       <scroll-view scroll-y="true" :style="{height :window_height + 'px' }" class="left-scroll-view">
@@ -36,7 +38,7 @@
     },
     onLoad() {
       const sysInfo = uni.getSystemInfoSync()
-      this.window_height = sysInfo.windowHeight
+      this.window_height = sysInfo.windowHeight -50
       
       this.getCateList()
       console.log(this.backgroundColor)
@@ -56,6 +58,12 @@
       gotoGoodsList(item){
         uni.navigateTo({
           url : '/subpkg/goods_list/goods_list?cid=' + item.cat_id
+        })
+      },
+      gotoSearch(){
+        // console.log('ok')
+        uni.navigateTo({
+          url : '/subpkg/search/search'
         })
       }
     },
