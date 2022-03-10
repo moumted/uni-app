@@ -11,10 +11,10 @@
       </scroll-view>
       <!-- 右侧 -->
       <scroll-view scroll-y="true" :style="{height :window_height + 'px' }" :scroll-top="scrollTop">
-        <view class="cate-lv2" v-for="(item2,index) in cateLevel2" :key="index"> 
+        <view class="cate-lv2" v-for="(item2,index) in cateLevel2" :key="item2.cat_id"> 
           <view class="cate-lv2-title">{{item2.cat_name}}</view>
           <view class="cate-lv3-list">
-            <view class="cate-lv3-item" v-for="(item3,index) in item2.children" :key="index" @click="gotoGoodsList(item3)"> 
+            <view class="cate-lv3-item" v-for="(item3,index) in item2.children" :key="item3.cat_id" @click="gotoGoodsList(item3)"> 
                 <image :src="item3.cat_icon"></image>
                 <text>{{item3.cat_name}}</text>
             </view>
@@ -46,6 +46,7 @@
     methods: {
       async getCateList(){
         const { data: res } = await uni.$http.get('/api/public/v1/categories')
+        // console.log(66,res)
         if(res.meta.status != 200) return uni.$showMsg()
         this.cateList = res.message
         this.cateLevel2 = res.message[0].children
@@ -56,6 +57,7 @@
         this.scrollTop = this.scrollTop === 0 ? 1 : 0
       },
       gotoGoodsList(item){
+        // console.log(item)
         uni.navigateTo({
           url : '/subpkg/goods_list/goods_list?cid=' + item.cat_id
         })

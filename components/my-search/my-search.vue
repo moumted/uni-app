@@ -6,7 +6,7 @@
     </view>
   </view>
 </template>
-
+ 
 <script>
   export default {
     name:"my-search",
