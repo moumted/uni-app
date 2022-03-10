@@ -44,7 +44,7 @@
         this.total = res.message.total
       },
       gotoDetail(item){
-        console.log('0',item)
+        // console.log('0',item)
         uni.navigateTo({
           url : '/subpkg/goods_detail/goods_detail?goods_id=' + item.cat_id
         })
