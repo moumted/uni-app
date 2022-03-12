@@ -36,7 +36,14 @@
 </template>
 
 <script>
+  import {mapState , mapMutations ,mapGetters} from 'vuex'
+  
   export default {
+     // computed: {
+     //    // 调用 mapState 方法，把 m_cart 模块中的 cart 数组映射到当前页面中，作为计算属性来使用
+     //    // ...mapState('模块的名称', ['要映射的数据名称1', '要映射的数据名称2'])
+     //    ...mapState('m_cart', ['cart']),
+     //  },
     filters:{
       toPrice(num){
         return Number(num).toFixed(2)
@@ -57,7 +64,7 @@
                 }, {
                     icon: 'cart',
                     text: '购物车',
-                    info: 2
+                    info: 0
                 }],
                 buttonGroup: [{
                   text: '加入购物车',
@@ -78,6 +85,7 @@
       this.getGoodsDetail(goods_id)
     },
     methods : {
+      ...mapMutations('m_cart',['addToCart']),
       async getGoodsDetail(goods_id){
           const { data : res } = await uni.$http.get('/api/public/v1/goods/detail', { goods_id })
           console.log(res)
@@ -98,6 +106,40 @@
             url : '/pages/cart/cart'
           })
         }
+      },
+      buttonClick(e){
+        if(e.content.text === '加入购物车'){
+          const goods = {
+            goods_id : this.goods_info.goods_id,
+            goods_name : this.goods_info.goods_name,
+            goods_price : this.goods_info.goods_price,
+            goods_count : 1,
+            goods_small_logo : this.goods_info.goods_small_logo,
+            goods_state : true
+          }
+          
+          this.addToCart(goods)
+        }
+      }
+    },
+    computed:{
+      ...mapGetters('m_cart' , ['total'])
+    },
+    watch : {
+      // total(newVal){
+      //   const findResult = this.options.find(x => x.text === '购物车')
+      //   if(findResult) {
+      //     findResult.info = newVal
+      //   }
+      // }
+      total : {
+        handler(newVal){
+          const findResult = this.options.find(x => x.text === '购物车')
+            if(findResult) {
+              findResult.info = newVal
+            }
+        },
+        immediate : true
       }
     }
   }
@@ -144,7 +186,7 @@ swiper{
   }
 }
 .goods_nav{
-  position : sticky;
+  position : fixed;
   bottom : 0;
   width: 100%;
   left : 0;

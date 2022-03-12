@@ -70,31 +70,5 @@
 
 <style lang="scss">
 .goods-list{
-  .goods-item{
-    display: flex;
-    padding: 10px 5px;
-    border-bottom: 1px solid #f0f0f0;
-    .goods-item-left{
-      .goods-pic{
-        width: 100px;
-        height: 100px;
-        display: block;
-      }
-    }
-    .goods-item-right{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      .goods-name{
-        font-size: 13px;
-      }
-      .goods-info-box{
-        .goods-price{
-          color: #C00000;
-          font-size: 16px;
-        }
-      }
-    }
-  }
 }
 </style>
